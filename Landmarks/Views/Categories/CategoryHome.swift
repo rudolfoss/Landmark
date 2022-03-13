@@ -13,8 +13,17 @@ struct CategoryHome: View {
     var body: some View {
         NavigationView{
             List{
+                modelData.features[0].image //add image of the first featured landmark to the top of the list
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 200)
+                    .clipped()
+                    .listRowInsets(EdgeInsets())//가장자리까지 확장하도록 edge insets 설정
+                
                 ForEach(modelData.categories.keys.sorted(), id: \.self) {key in
-                    CategoryRow(categoryName: key, items: modelData.categories[key]!)                }
+                    CategoryRow(categoryName: key, items: modelData.categories[key]!)
+                }
+                .listRowInsets(EdgeInsets())//가장자리까지 확장하도록 edge insets 설정
             }
             .navigationTitle("Featured")
         }
